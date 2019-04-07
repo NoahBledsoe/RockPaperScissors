@@ -1,24 +1,24 @@
-#Importing the modules necessary for the game
-from random import *
+#These are the needed moduels that we imported
 from tkinter import *
+from random import randint
 
-#Creating functions for each option a user can choose
-def userChoiceRock():
+#These are the functions that we created that the user can use
+def ChoiceRock():
     userChoice = "rock"
     turn(userChoice)
     userImage.configure(image = rockImage)
 
-def userChoicePaper():
+def ChoicePaper():
     userChoice = "paper"
     turn(userChoice)
     userImage.configure(image = paperImage)
 
-def userChoiceScissors():
+def ChoiceScissors():
     userChoice = "scissors"
     turn(userChoice)
     userImage.configure(image = scissorsImage)
 
-#gameplay setion
+#This is the gameplay section
 def turn(userChoice):
     opponent = ['rock', 'paper', 'scissors']
     opponentChoice = opponent[randint(0,2)]
@@ -40,27 +40,27 @@ def turn(userChoice):
         turnResult.configure(text = "You win!", fg = "green")
         compare.configure(text = ">")
 
-#main program
+#This is the main
 mainWindow = Tk()
 mainWindow.title("Rock Paper Scissors")
-rockButton = Button(mainWindow, width = 50, height = 10, text = "Rock", justify = CENTER, command = userChoiceRock, activebackground = 'black', activeforeground = 'white')
-paperButton = Button(mainWindow, width = 50, height = 10, text = "Paper", justify = CENTER, command = userChoicePaper, activebackground = 'black', activeforeground = 'white')
-scissorsButton = Button(mainWindow, width = 50, height = 10, text = "Scissors", justify = CENTER, command = userChoiceScissors, activebackground = 'black', activeforeground = 'white')
+rockButton = Button(mainWindow, width = 50, height = 10, text = "Rock", justify = CENTER, command = ChoiceRock, activebackground = 'black', activeforeground = 'white')
+paperButton = Button(mainWindow, width = 50, height = 10, text = "Paper", justify = CENTER, command = ChoicePaper, activebackground = 'black', activeforeground = 'white')
+scissorsButton = Button(mainWindow, width = 50, height = 10, text = "Scissors", justify = CENTER, command = ChoiceScissors, activebackground = 'black', activeforeground = 'white')
 
-#images
+#These are the images used
 rockImage = PhotoImage(file = "rockPicture.png")
 paperImage = PhotoImage(file = "paperPicture.png")
 scissorsImage = PhotoImage(file = "scissorsPicture.png")
-#userImage = Label(image = rockImage)
-#userImage.image = rockImage
+userImage = Label(image = rockImage)
+userImage.image = rockImage
 compare = Label(mainWindow, justify = CENTER, font = ("Helvetica", 30) )
-#opponentImage = Label(image = paperImage)
-#opponentImage.image = paperImage
+opponentImage = Label(image = paperImage)
+opponentImage.image = paperImage
 turnResult = Label(mainWindow, width = 20, justify = CENTER, font = ("Helvetica", 20) )
 playerOne = Label(mainWindow, text = "Player One", width = 20, justify = CENTER, font = ("Helvetica", 20) )
 playerTwo = Label(mainWindow, text = "Player Two", width = 20, justify = CENTER, font = ("Helvetica", 20) )
 
-#Tk GUI grid
+#Tkinter GUI grid
 rockButton.grid(row = 2, column = 1)
 paperButton.grid(row = 2, column = 2)
 scissorsButton.grid(row = 2, column = 3)
