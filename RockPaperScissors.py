@@ -80,5 +80,34 @@ def compareResults(playerOneChoice):
 	else:
 		turnResult.configure(text = "Player One has won.", fg = "green")
 
+class DefaultWindowSize(unittest.TestCase):
+	def test_default_window_size(self):
+		window = window('The window')
+		self.assertEqual(window.size(), (1600,500))
+		
+class windowTestCase(unittest.TestCase):
+	def setUp(self):
+		self.window = Window('The window')
+		
+	def test_default_window_size(self):
+		self.assertEqual(self.widget.size(), (1600,500), 
+						'incorrect default size')
+	def test_window_resize(self):
+		self.window.resize(1500, 400)
+		self.assertEqual(self.window.size(), (1500,400),
+						'wrong size after resize')
+						
+def suite():
+	suite = unittest.TestSuite()
+	suite.addTest(windowTestCase('test_default_window_size'))
+	suit.addTest(windowTestCase('test_window_resize'))
+	return suite
+		
+	if name == '__main__':
+		runner = unittest.TextTestRunner()
+		runner.run(suite())	
+						
+						
+							
 #Closing the process
 window.mainloop()
