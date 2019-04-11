@@ -34,6 +34,19 @@ def playerChoosesScissors():
 	playerOneChoice = "scissors"
 	compareResults(playerOneChoice)
 	playerOneImage.configure(image = scissorsImage)
+
+
+#These functions are wrote to test. We isolated the game logic from the GUI application.
+#They simpiliy functions that return the proper string. 
+def playerChoosesRockConsole():
+	return 'rock'
+	
+def PlayerChoosesPaperConsole():
+	return 'paper'
+
+def PlayerChoosesScissors():
+	return 'Scissors'
+
 	
 #Creating the buttons that the user presses and activating each function that corresponds with it      
 rockButton = Button(window, width = 50, height = 5, font = ("Times New Roman", 15), text = "Rock", justify = CENTER, command = playerChoosesRock, bg = 'green', activebackground = 'gray', activeforeground = 'white')
@@ -59,15 +72,29 @@ playerOne = Label(window, text = "Player One", width = 20, justify = CENTER, fon
 playerOne.grid(row = 4, column = 1)
 playerTwo = Label(window, text = "Player Two", width = 20, justify = CENTER, font = ("Times New Roman", 20))
 playerTwo.grid(row = 4, column = 3)
-	
-	
+
+
+#This function is a direct copy from the CompareResults without the GUI code.
+#Isolating the Game logic
+#It simpily returns a 0(draw), 1(playerOneWins), 2(PlayerTwoWins)
+
+def compareResultsConsole(PlayerOneChoice, PlayerTwoChoice):
+	if (PlayerTwoChoice == PlayerOneChoice):
+		return 0
+	elif((PlayerTwoChoice == 'rock' and PlayerOneChoice == 'scissors') or (PlayerTwoChoice == 'paper' and PlayerOneChoice == 'rock') or (PlayerTwoChoice == 'scissors' and PlayerOneChoice == 'paper')):
+		return 2
+	else:
+		return 1
+		
+		
 #Function to compare both the player's choice and the computer's random choice to see who won 
 def compareResults(playerOneChoice):
 	playerTwo = ['rock', 'paper', 'scissors']
 	playerTwoChoice = playerTwo[randint(0,2)]
-
+	
 	if(playerTwoChoice == 'rock'):
 		playerTwoImage.configure(image = rockImage)
+		
 	elif(playerTwoChoice == 'paper'):
 		playerTwoImage.configure(image = paperImage)
 	else:
@@ -79,35 +106,6 @@ def compareResults(playerOneChoice):
 		turnResult.configure(text = "Player Two has won.", fg = "red")
 	else:
 		turnResult.configure(text = "Player One has won.", fg = "green")
-
-class DefaultWindowSize(unittest.TestCase):
-	def test_default_window_size(self):
-		window = window('The window')
-		self.assertEqual(window.size(), (1600,500))
 		
-class windowTestCase(unittest.TestCase):
-	def setUp(self):
-		self.window = Window('The window')
-		
-	def test_default_window_size(self):
-		self.assertEqual(self.widget.size(), (1600,500), 
-						'incorrect default size')
-	def test_window_resize(self):
-		self.window.resize(1500, 400)
-		self.assertEqual(self.window.size(), (1500,400),
-						'wrong size after resize')
-						
-def suite():
-	suite = unittest.TestSuite()
-	suite.addTest(windowTestCase('test_default_window_size'))
-	suit.addTest(windowTestCase('test_window_resize'))
-	return suite
-		
-	if name == '__main__':
-		runner = unittest.TextTestRunner()
-		runner.run(suite())	
-						
-						
-							
 #Closing the process
 window.mainloop()
