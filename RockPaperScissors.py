@@ -1,13 +1,13 @@
 #Noah Bledsoe, Jayson Waters, Nathan Aguirre, and Bryce Harty
 #Built in a windows environment using Geany
-#Language: Python 3.6.7
-#As of right now, the game is only between the player and the computer but the client-server functionalities should be ready by the next phase
+#Language: Python 3.7.0
+#As of right now, the game is only between the player and the computer on a single host but the client-server functionality should be ready by the system testing phase
 #For unit testing, we are using the built in 'unittest' module that comes with python
 
 
 
 
-#These are the needed moduels that we imported
+#These are the modules used for creating the GUI, having the computer selected a random choice, and for testing the units
 from tkinter import *
 from random import *
 import unittest
@@ -18,7 +18,7 @@ window.title("Rock Paper Scissors")
 window.geometry("1600x500")
 
 
-#Creating functions for when the user hits either the Rock, Paper, or Scissors buttons to call the compare function to see who won
+#Creating functions for when the user hits either the Rock, Paper, or Scissors button to send a parameter to the compare function to see who won
 #These functions also configure the image for whatever button they press
 def playerChoosesRock():
 	playerOneChoice = "rock"
@@ -34,26 +34,13 @@ def playerChoosesScissors():
 	playerOneChoice = "scissors"
 	compareResults(playerOneChoice)
 	playerOneImage.configure(image = scissorsImage)
-
-
-#These functions are wrote to test. We isolated the game logic from the GUI application.
-#They simpiliy functions that return the proper string. 
-def playerChoosesRockConsole():
-	return 'rock'
-	
-def PlayerChoosesPaperConsole():
-	return 'paper'
-
-def PlayerChoosesScissors():
-	return 'Scissors'
-
 	
 #Creating the buttons that the user presses and activating each function that corresponds with it      
-rockButton = Button(window, width = 50, height = 5, font = ("Times New Roman", 15), text = "Rock", justify = CENTER, command = playerChoosesRock, bg = 'green', activebackground = 'gray', activeforeground = 'white')
-paperButton = Button(window, width = 50, height = 5, font = ("Times New Roman", 15), text = "Paper", justify = CENTER, command = playerChoosesPaper, bg = 'green', activebackground = 'gray', activeforeground = 'white')
-scissorsButton = Button(window, width = 50, height = 5, font = ("Times New Roman", 15), text = "Scissors", justify = CENTER, command = playerChoosesScissors, bg = 'green', activebackground = 'gray', activeforeground = 'white')
+rockButton = Button(window, width = 50, height = 5, text = "Rock", font = ("Times New Roman", 15), command = playerChoosesRock, justify = CENTER,  bg = 'green', fg = 'white', activebackground = 'gray', activeforeground = 'white')
+paperButton = Button(window, width = 50, height = 5, font = ("Times New Roman", 15), text = "Paper", justify = CENTER, command = playerChoosesPaper, bg = 'green', fg = 'white', activebackground = 'gray', activeforeground = 'white')
+scissorsButton = Button(window, width = 50, height = 5, font = ("Times New Roman", 15), text = "Scissors", justify = CENTER, command = playerChoosesScissors, bg = 'green', fg = 'white', activebackground = 'gray', activeforeground = 'white')
 
-#Setting the images and label used in the GUI and placing them in the grid correctly
+#Setting the images and labels used in the GUI and placing them in the grid correctly
 rockImage = PhotoImage(file = "rockPicture.png")
 rockButton.grid(row = 2, column = 1)
 paperImage = PhotoImage(file = "paperPicture.png")
@@ -75,13 +62,13 @@ playerTwo.grid(row = 4, column = 3)
 
 
 #This function is a direct copy from the CompareResults without the GUI code.
-#Isolating the Game logic
+#Isolating the Game logic for testing purposes in the RockPaperScissorsTest.py file
 #It simpily returns a 0(draw), 1(playerOneWins), 2(PlayerTwoWins)
-
 def compareResultsConsole(PlayerOneChoice, PlayerTwoChoice):
 	if (PlayerTwoChoice == PlayerOneChoice):
 		return 0
-	elif((PlayerTwoChoice == 'rock' and PlayerOneChoice == 'scissors') or (PlayerTwoChoice == 'paper' and PlayerOneChoice == 'rock') or (PlayerTwoChoice == 'scissors' and PlayerOneChoice == 'paper')):
+	elif((PlayerTwoChoice == 'rock' and PlayerOneChoice == 'scissors') or (PlayerTwoChoice == 'paper' and PlayerOneChoice == 'rock') 
+	                                or (PlayerTwoChoice == 'scissors' and PlayerOneChoice == 'paper')):
 		return 2
 	else:
 		return 1
@@ -102,7 +89,8 @@ def compareResults(playerOneChoice):
 
 	if(playerTwoChoice == playerOneChoice):
 		turnResult.configure(text = "It's a draw.", fg = "black")
-	elif((playerTwoChoice == 'rock' and playerOneChoice == 'scissors') or (playerTwoChoice == 'paper' and playerOneChoice == 'rock') or (playerTwoChoice == 'scissors' and playerOneChoice == 'paper')):
+	elif((playerTwoChoice == 'rock' and playerOneChoice == 'scissors') or (playerTwoChoice == 'paper' and playerOneChoice == 'rock')
+	                                or (playerTwoChoice == 'scissors' and playerOneChoice == 'paper')):
 		turnResult.configure(text = "Player Two has won.", fg = "red")
 	else:
 		turnResult.configure(text = "Player One has won.", fg = "green")
