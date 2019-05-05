@@ -4,7 +4,7 @@
 
 #importing the modules needed
 import unittest
-import RockPaperScissors
+import Client
 import tkinter
 
 #Creating a class to test RockPaperScissors.py
@@ -25,11 +25,11 @@ class TestRockPaperScissors(unittest.TestCase):
  	#Actual outputs: 3 dots are printed to the console signifying that all 3 tests in this unit pass (both parameters are equal)
  	#Testing methodology: Equivalence classes
 	def test_Rock_Paper(self):		
-		self.assertEqual(RockPaperScissors.compareResultsConsole('rock', 'paper'), 2)
+		self.assertEqual(Client.compareResultsConsole('rock', 'paper'), 2)
 	def test_Rock_Scissors(self):
-		self.assertEqual(RockPaperScissors.compareResultsConsole('rock', 'scissors'), 1)
+		self.assertEqual(Client.compareResultsConsole('rock', 'scissors'), 1)
 	def test_Rock_Rock(self):
-		self.assertEqual(RockPaperScissors.compareResultsConsole('rock', 'rock'), 0)
+		self.assertEqual(Client.compareResultsConsole('rock', 'rock'), 0)
 
 
  	#This unit tests all combinations of outputs for when player one (the user) chooses Paper
@@ -43,11 +43,11 @@ class TestRockPaperScissors(unittest.TestCase):
  	#Actual outputs: 3 additional dots are printed to the console signifying that all 3 tests in this unit pass (both parameters are equal)
  	#Testing methodology: Equivalence classes
 	def test_Paper_Rock(self):		
-		self.assertEqual(RockPaperScissors.compareResultsConsole('paper', 'rock'), 1)
+		self.assertEqual(Client.compareResultsConsole('paper', 'rock'), 1)
 	def test_Paper_Scissors(self):		
-		self.assertEqual(RockPaperScissors.compareResultsConsole('paper', 'scissors'), 2)
+		self.assertEqual(Client.compareResultsConsole('paper', 'scissors'), 2)
 	def test_Paper_paper(self):		
-		self.assertEqual(RockPaperScissors.compareResultsConsole('paper', 'paper'), 0)
+		self.assertEqual(Client.compareResultsConsole('paper', 'paper'), 0)
 		
  	#This unit tests all combinations of outputs for when player one (the user) chooses Scissors
  	#Date tested: April 4, 2019
@@ -60,11 +60,11 @@ class TestRockPaperScissors(unittest.TestCase):
  	#Actual outputs: 3 additional dots are printed to the console signifying that all 3 tests in this unit pass (both parameters are equal)
  	#Testing methodology: Equivalence classes	
 	def test_Scissors_Scissors(self):		
-		self.assertEqual(RockPaperScissors.compareResultsConsole('scissors', 'scissors'), 0)
+		self.assertEqual(Client.compareResultsConsole('scissors', 'scissors'), 0)
 	def test_Scissors_Rock(self):		
-		self.assertEqual(RockPaperScissors.compareResultsConsole('scissors', 'rock'), 2)
+		self.assertEqual(Client.compareResultsConsole('scissors', 'rock'), 2)
 	def test_Scissors_Paper(self):		
-		self.assertEqual(RockPaperScissors.compareResultsConsole('scissors', 'paper'), 1)
+		self.assertEqual(Client.compareResultsConsole('scissors', 'paper'), 1)
 
 #Ending the tests
 if __name__ == '__main__':
