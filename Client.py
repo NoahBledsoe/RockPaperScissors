@@ -81,20 +81,18 @@ def compareResultsConsole(PlayerOneChoice, PlayerTwoChoice):
 def compareResults(playerOneChoice):
 	playerTwo = ['rock', 'paper', 'scissors']
 	
-	##CONN
-	HOST = socket.gethostname()#getting computers ip
+	##CONNECTION
+	HOST = socket.gethostname()#getting computers ip (local host)
 	PORT = 41992    #Port assinged
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #making socket using AF_NET and SOCK_STREAM
 	s.connect((HOST, PORT))#connection
-	##playerTwoChoice = playerTwo[randint(0,2)]
-	data = s.recv(1024)
-	strings = str(data, 'utf-8')
-	num = int(strings)
-	print(num)
-	playerTwoChoice = playerTwo[num]
+	data = s.recv(1024)	#recieves data 
+	strings = str(data, 'utf-8')	#converts it out of bytes and into str
+	num = int(strings)	#cast to int
+	playerTwoChoice = playerTwo[num]	#makes choice
 	
-	s.close()
-	
+	s.close()	#closes connection
+		
 	
 	if(playerTwoChoice == 'rock'):
 		playerTwoImage.configure(image = rockImage)
